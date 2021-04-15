@@ -1,3 +1,4 @@
 # BatterUp
 Battery status with Xamarin Essentials
-[Battery Status](batstatus.jpeg)
+
+![Battery Status](batstatus.jpeg)
