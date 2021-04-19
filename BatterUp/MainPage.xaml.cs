@@ -28,11 +28,43 @@ namespace BatterUp
             var status = Battery.EnergySaverStatus;
             enSavStatus.Text=status.ToString();
             
+            var connType = Connectivity.NetworkAccess.ToString();
+            nAtype.Text = connType;
+
+            var connectionProfiles = Connectivity.ConnectionProfiles;
+            var profilesString = string.Empty;
+            foreach (var connectionProfile in connectionProfiles)
+            {
+                profilesString+=connectionProfile.ToString();
+                profilesString+=" ";
+
+            }
+
+            nAprofiles.Text = profilesString;
+            
+            
             Battery.BatteryInfoChanged += Battery_BatteryInfoChanged;
             Battery.EnergySaverStatusChanged += OnEnergySaverStatusChanged;
+            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
 
         }
         
+        void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            nAtype.Text = e.NetworkAccess.ToString();
+
+            var connectionProfiles =  e.ConnectionProfiles;
+            var profilesString = string.Empty;
+            foreach (var connectionProfile in connectionProfiles)
+            {
+                profilesString+=connectionProfile.ToString();
+                profilesString+=" ";
+
+            }
+
+            nAprofiles.Text = profilesString;
+            
+        }
         void Battery_BatteryInfoChanged(object sender, BatteryInfoChangedEventArgs   e)
             {
                 var level = e.ChargeLevel;

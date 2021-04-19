@@ -12,6 +12,10 @@
         <Label x:Name="powerSource" Text="powerSource" FontSize="16" Padding="30,0,30,0"/>
         <Label x:Name="chargeLevel" Text="chargeLevel" FontSize="16" Padding="30,0,30,0"/>
         <Label x:Name="enSavStatus" Text="enSavStatus" FontSize="16" Padding="30,0,30,0"/>
+        <Label x:Name="nAtype" Text="nAtype" FontSize="16" Padding="30,0,30,0"/>
+        <Label x:Name="nAprofiles" Text="nAprofiles" FontSize="16" Padding="30,0,30,0"/>
+
+
     </StackLayout>
 
 </ContentPage>
