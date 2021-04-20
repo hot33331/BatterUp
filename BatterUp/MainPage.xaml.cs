@@ -17,25 +17,26 @@ namespace BatterUp
             var level = Battery.ChargeLevel; // returns 0.0 to 1.0 or 1.0 when on AC or no battery.
 
             var state = Battery.State;
-            batteryState.Text = state.ToString();
+            batteryState.Text = "Charging State: "+state.ToString();
             
             var source = Battery.PowerSource;
-            powerSource.Text = source.ToString();
+            powerSource.Text = "Power Source: " + source.ToString();
 
             var chargeLevel = Battery.ChargeLevel * 100;
-            this.chargeLevel.Text = chargeLevel.ToString() + "%";
+            this.chargeLevel.Text = "Charging Level: " + chargeLevel.ToString() + "%";
             
             var status = Battery.EnergySaverStatus;
-            enSavStatus.Text=status.ToString();
+            enSavStatus.Text= "Energy Saver: " + status.ToString();
             
             var connType = Connectivity.NetworkAccess.ToString();
-            nAtype.Text = connType;
+            nAtype.Text = "Network access type: " + connType;
 
             var connectionProfiles = Connectivity.ConnectionProfiles;
             var profilesString = string.Empty;
             foreach (var connectionProfile in connectionProfiles)
             {
-                profilesString+=connectionProfile.ToString();
+                profilesString += "Connection profiles: ";
+                profilesString +=connectionProfile.ToString();
                 profilesString+=" ";
 
             }
@@ -51,13 +52,14 @@ namespace BatterUp
         
         void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
         {
-            nAtype.Text = e.NetworkAccess.ToString();
+            nAtype.Text = "Network access type: " + e.NetworkAccess.ToString();
 
             var connectionProfiles =  e.ConnectionProfiles;
             var profilesString = string.Empty;
             foreach (var connectionProfile in connectionProfiles)
             {
-                profilesString+=connectionProfile.ToString();
+                profilesString += "Connection profiles: ";
+                profilesString +=connectionProfile.ToString();
                 profilesString+=" ";
 
             }
@@ -68,18 +70,18 @@ namespace BatterUp
         void Battery_BatteryInfoChanged(object sender, BatteryInfoChangedEventArgs   e)
             {
                 var level = e.ChargeLevel;
-                chargeLevel.Text=level*100 + "%";
-                var state = e.State;
+                chargeLevel.Text= "Charging Level: " + level * 100 + "%";
+                var state = "Charging State: " + e.State;
                 batteryState.Text=state.ToString();
                 var source = e.PowerSource;
-                powerSource.Text=source.ToString();
+                powerSource.Text= "Power Source: " + source.ToString();
             }
             
             private void OnEnergySaverStatusChanged(object sender, EnergySaverStatusChangedEventArgs e)
                 {
                     // Process change
                     var status = e.EnergySaverStatus;
-                    enSavStatus.Text=status.ToString();
+                    enSavStatus.Text= "Energy Saver: " + status.ToString();
                 }
     }
 }
